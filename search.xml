@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>AIDA64性能监视器</title>
+    <url>/2023/06/02/AIDA64%E6%80%A7%E8%83%BD%E7%9B%91%E8%A7%86%E5%99%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>每次在玩游戏的时候我都习惯没事看看帧率，有时候帧率不稳定还需要开一个任务管理器来看是cpu还是gpu占用过高。AIDA64自带的性能监视器可以完美解决这个问题，所以斥巨资（100块）买了一个小米平板1刷了林萧战的系统，拿来当作AIDA64的显示面板。一开始使用的安卓的脚本软件，定时ping主机来作为判断条件。虽然很糙，但是能用。最近微软更新了一波防火墙，默认把ICMP的入站规则给关了。（微软罪大恶极，浪费了我几个小时）。更新的方法是使用bat脚本然后用adb来控制安卓设备，开关机的时候自动启动。但是win11的任务计划中没有关机的触发器（我不理解），还好微软的兼容性</strong><del>（屎山代码）</del>很好，在组策略中还是保存的开关机的触发器，完美。</p>
+<h1 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h1><p><strong>打开AIDA64设置并开启LCD选项即可。开启帧率显示需要安装</strong><a href="https://www.guru3d.com/files-details/rtss-rivatuner-statistics-server-download.html">RTSS</a></p>
+<h2 id="主题使用"><a href="#主题使用" class="headerlink" title="主题使用"></a>主题使用</h2><p><strong>参考文章：</strong><a href="https://www.bilibili.com/read/cv16164486">AIDA64 Remotesensor 副屏监控主题使用说明</a></p>
+<h2 id="主题推荐"><a href="#主题推荐" class="headerlink" title="主题推荐"></a>主题推荐</h2><ul>
+<li><a href="https://www.bilibili.com/video/BV1P94y1o7yE">主播女孩重度依赖</a></li>
+<li><a href="https://www.bilibili.com/video/BV15i4y1C7WL">赛博酒保行动</a></li>
+<li><a href="https://www.bilibili.com/read/cv22232557">persona5</a></li>
+</ul>
+<blockquote>
+<p><strong>p5的主题是我做的如果有什么问题和建议可以提交issue</strong></p>
+</blockquote>
+<h2 id="windows自动控制安卓开关屏幕"><a href="#windows自动控制安卓开关屏幕" class="headerlink" title="windows自动控制安卓开关屏幕"></a>windows自动控制安卓开关屏幕</h2><p><strong>使用该方法，你需要下载adb并在开发者选项中打开手机的usb调试以及通过网络调试并把手机&#x2F;平板WiFi改成静态ip或者在路由器设置手机&#x2F;平板IP与mac绑定（以上操作每个品牌的设备都有些许不同，如果操作有困难请百度）。</strong></p>
+<p><strong>完成以上操作后，在windows添加环境变量，将adb所在路径添加到path下。</strong></p>
+<p><strong>打开cmd&#x2F;powershell，输入adb回车，不报错即可。</strong></p>
+<p><strong>有线连接：</strong></p>
+<p><strong>插上线以后设备会询问你是否允许调试，勾选始终允许。然后在cmd&#x2F;powershell中运行 adb devices命令可以看到设备，如果没有请使用adb connect连接。</strong></p>
+<p><strong>无线连接：</strong></p>
+<p><strong>在cmd&#x2F;powershell中使用adb connect 设备ip连接，第一次会失败提示未授权。在设备中选择始终允许调试。</strong></p>
+<p><strong>运行adb disconnect 设备ip断开连接，然后adb connect 设备ip重新连接。此时运行adb devices命令可以看到设备。</strong></p>
+<p><strong>如果无线连接有问题，请检查设备监听端口是否为5555，Windows的adb调试端口是否被占用，具体操作请百度。</strong></p>
+<p><strong>在C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup路径下，新建文本文档。在文档中添加如下命令：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">adb connect 你的设备ip</span><br><span class="line"></span><br><span class="line">adb shell input keyevent 224</span><br></pre></td></tr></table></figure>
+
+<p><strong>然后保存并将文件后缀修改为bat</strong></p>
+<p><strong>在C:\Windows\System32\GroupPolicy\Machine\Scripts\Shutdown路径下，新建文本文档。在文档中添加如下命令：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">adb connect 你的设备ip</span><br><span class="line"></span><br><span class="line">adb shell input keyevent 26</span><br></pre></td></tr></table></figure>
+
+<p><strong>然后保存并将文件后缀修改为bat</strong></p>
+<p><strong>运行脚本测试功能。第二个脚本运行后会关闭设备屏幕，第一个运行后会打开。如果没有请删除脚本@echo off命令并在最后添加pause命令。重新运行后可以看到报错信息。</strong></p>
+<p><strong>然后win+R输入gpedit.msc打开编辑组策略。参考下图添加启动和关机脚本。脚本默认异步执行，不会减慢开机速度。</strong> <img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/06/11/98a609c32887c4e56ff29018c3d876e1.png"></p>
+]]></content>
+      <categories>
+        <category>windows配置</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>Aida64</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>又拍云CDN加速访问Github Page</title>
+    <url>/2023/07/01/CDN%E5%8A%A0%E9%80%9FGitHubpages/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前一直挂科学上网访问GitHub，所以对于GitHub的访问速度没有什么感觉。直到前段时间直连访问了一次博客，只能说和被墙也没什么两样。所以CDN对于Github Page来说就是必需品了。</p>
+<h1 id="为什么是又拍云"><a href="#为什么是又拍云" class="headerlink" title="为什么是又拍云"></a>为什么是<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">又拍云</a></h1><p>又拍云的代金券并不是按月发放，而且按年。即这个月没用完的额度依然可以在今年内使用，这样的话即使有个别几个月超出免费额度也不会有问题。所以又拍云的免费额度反而是最实在的。</p>
+<p>当你的网站人开始多起来以后，免费的CDN流量不够的时候。可以申请<code>推广大使</code>，每年有1000元的抵用券。非常适合中小型网站。</p>
+<p>而且又拍云也支持对象存储，可以搭建图床</p>
+<p>缺点：需要在加速页面的页脚添加推广链接。</p>
+<h1 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h1><h2 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件"></a>必要条件</h2><ul>
+<li>域名已备案</li>
+<li>一个支持线路解析的DNS（推荐华为云，无需实名制，免费版也可以设置1秒TTL）</li>
+<li>一个已经实名认证的又拍云账号</li>
+</ul>
+<h2 id="申请又拍云联盟"><a href="#申请又拍云联盟" class="headerlink" title="申请又拍云联盟"></a>申请又拍云联盟</h2><p>申请免费额度需要在页面添加推广链接</p>
+<h3 id="在matery主题上添加又拍云链接"><a href="#在matery主题上添加又拍云链接" class="headerlink" title="在matery主题上添加又拍云链接"></a>在matery主题上添加又拍云链接</h3><ol>
+<li><p>将又拍云的logo上传到你自己的图床上，<a href="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/8fa59409ece2a4491180ed1dad9f459b.png">下载链接</a></p>
+</li>
+<li><p>在<code>_config.yml</code>文件中添加如下配置</p>
+</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">upyun:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">logourl:</span> <span class="comment">#又拍云logo链接</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral</span> <span class="comment">#推广链接</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在<code>/layout/_partial/footer.ejs</code>文件的大约第107行添加如下代码</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.<span class="property">upyun</span>.<span class="property">enable</span>) &#123; %&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;upyun&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- url_for(theme.upyun.url) %&gt;&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        由</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&lt;%- theme.jsDelivr.url %&gt;&lt;%- url_for(theme.upyun.logourl) %&gt;&quot;</span>    </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&quot;height: 50px; vertical-align:middle&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml">        提供CDN支持 </span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>添加后如图<br><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/561f032759a26b6335221ff5a59c17ed.png"></p>
+<h3 id="申请抵用券"><a href="#申请抵用券" class="headerlink" title="申请抵用券"></a>申请抵用券</h3><p>打开<a href="https://www.upyun.com/league">又拍云联盟</a>并登录</p>
+<p>然后点击<strong>立即申请</strong>并填入相关信息，如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/21af6596c2a4be32a98d675ffcfa835e.png"></p>
+<p>之后需要审核1-2天，耐心等待即可。</p>
+<h3 id="添加SSL证书"><a href="#添加SSL证书" class="headerlink" title="添加SSL证书"></a>添加SSL证书</h3><p>在等待审核的时间里，可以申请一下SSL证书</p>
+<p>打开<a href="https://console.upyun.com/toolbox/ssl/">又拍云SSL证书</a></p>
+<p>点击<strong>申购证书</strong>就可以申请免费的单域名证书，<strong>证书管理</strong>中可以上传自有证书</p>
+<p>又拍云支持自动续签 Let’s Encrypt 证书还是挺方便的</p>
+<h2 id="CDN设置"><a href="#CDN设置" class="headerlink" title="CDN设置"></a>CDN设置</h2><ol>
+<li>登录又拍云，进入<a href="https://console.upyun.com/dashboard/">控制台</a>，创建CDN服务</li>
+</ol>
+<p>​		配置如图所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/03de957788d21eeded449642b3ee6f2d.png"></p>
+<p>​		点击创建后会生成专属CNAME</p>
+<ol start="2">
+<li>打开DNS管理界面将域名的国内线路解析设置为CNAME</li>
+</ol>
+<p>​		国际线路解析设置参考我的文章：<a href="https://xxlgenius.com/2023/05/21/%E6%90%AD%E5%BB%BAHexo%E5%92%8CGithubPage%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">搭建Hexo和GithubPage的个人博客</a></p>
+<ol start="3">
+<li>打开强制HTTPS，如图</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/bdf6423eb39d2d063dd3515a1222b3bb.png"></p>
+<ol start="5">
+<li><p>剩余的配置可以参考介绍，视情况开启，一般都是用来优化性能和流量的，不开也不影响使用。</p>
+</li>
+<li><p>设置好以后需要等一会访问，等CDN缓存完资源。也可以在控制台手动强制刷新，如图</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/09/413226d3077620e7329232b7a8bd12f2.png"></p>
+<h1 id="其他免费CDN的常见服务商"><a href="#其他免费CDN的常见服务商" class="headerlink" title="其他免费CDN的常见服务商"></a>其他免费CDN的常见服务商</h1><h2 id="比较推荐"><a href="#比较推荐" class="headerlink" title="比较推荐"></a>比较推荐</h2><ul>
+<li><a href="https://www.freecdn.pw/">FreeCDN</a><br>免费套餐只能绑定一个域名，但是有20G的ddos防御</li>
+<li><a href="https://www.dogecloud.com/price?product=cdn">多吉云</a><br>每月20G的免费流量，可以尝试</li>
+<li><a href="https://www.yundun.com/">上海云盾</a><br>不限流量，但是带宽限制5M<br>可以设置主站和备用站，主站离线可以自动切换到备用站</li>
+</ul>
+<h2 id="不推荐"><a href="#不推荐" class="headerlink" title="不推荐"></a>不推荐</h2><p><a href="https://www.cloudflare.com/">Cloudflare</a><br>没有国内的节点，在一些地区甚至是减速器</p>
+<ul>
+<li><a href="https://www.qiniu.com/">七牛云</a><br>只有HTTP流量是免费的</li>
+<li><a href="https://defense.yunaq.com/jsl/">加速乐</a><br>HTTPS不免费</li>
+<li><del>百度云加速</del><br>2023年5月5日起百度云加速不支持创建免费域名。地主家也没余粮了.jpg</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>虽然介绍又拍云的时候写的像软文，但是确实很符合我的需求。大家可以根据自己的需求来选择其他家的CDN服务。适合自己的才是最好的。</p>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Github</tag>
+        <tag>Hexo</tag>
+        <tag>CDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Github搭建Hexo的个人博客最完美的方案</title>
+    <url>/2023/05/20/%E4%BD%BF%E7%94%A8GithubPage%E6%90%AD%E5%BB%BAHexo%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>这是本博客的第一篇文章！特此把本博客的配置过程记录下来作为纪念也顺便测试Hexo的相关功能。</strong></p>
+<p><strong>本博客由Github Page+Hexo搭建而成。优点为不用担心被ddos，可以借由git的版本管理管理文件更安全。缺点也是有的，静态页面更新极为痛苦以及性能不高，不过免费大过天，还要啥自行车。</strong></p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol>
+<li><strong>首先登录</strong><a href="https://github.com/">Github</a>账号，新建两个个储存库，一个名称为<code>用户名.github.io</code>（免费账户只能设置为公开仓库），另一个名字随意用来保存hexo原始代码（可以设置成私有仓库）</li>
+<li><strong>安装</strong><a href="https://git-scm.com/downloads">Git</a>，或者安装<a href="https://desktop.github.com/">GitHub Desktop</a>用来同步储存库</li>
+<li><strong>安装</strong><a href="https://desktop.github.com/">Node.Js</a>（推荐安装最新版本），因为Hexo是基于Node.Js的，而且之后的所有包都是通过npm安装。</li>
+<li><strong>拉取存储库</strong></li>
+</ol>
+<p>在windows资源管理器内右键可以打开<code>git-bash</code>命令行工具，输入</p>
+<p>git clone <a href="https://github.com/%E7%94%A8%E6%88%B7%E5%90%8D/%E5%88%9B%E5%BB%BA%E7%9A%84%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93">https://github.com/用户名/创建的私有仓库</a></p>
+<h1 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h1><p>进入储存库，然后输入如下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">hexo g</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>此时Hexo就会在**<a href="http://localhost:4000/">Http://localhost:4000</a>运行</p>
+<h1 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h1><p>添加子模块并下载的Git指令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git.exe submodule add -b master <span class="string">&quot;https://github.com/jerryc127/hexo-theme-butterfly.git&quot;</span> <span class="string">&quot;themes/hexo-theme-butterfly&quot;</span></span><br><span class="line"></span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+
+<p>修改 Hexo 根目錄下的 <code>_config.yml</code>，把主題改為 <code>butterfly</code></p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">butterfly</span></span><br></pre></td></tr></table></figure>
+
+<p>打开hexo根目录下的<code>package.json</code>文件并替换<code>dependencies</code>项下的内容为</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;hexo&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^6.3.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-generator-archive&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-generator-category&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-generator-index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-generator-tag&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-renderer-ejs&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-deployer-git&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-renderer-marked&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^6.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-renderer-stylus&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-server&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-theme-landscape&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-renderer-pug&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-tag-aplayer&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-douban&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-generator-feed&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-generator-searchdb&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.4.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;hexo-wordcount&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^6.0.0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后执行<code>npm install</code>，会自动安装所有未安装的插件</p>
+<blockquote>
+<p>以上为butterfly主题所依赖的大部分插件，如果需要其他插件则修改<code>package.json</code>即可。这样方便之后使用GitHub Action自动部署</p>
+</blockquote>
+<p>在 hexo 的根目錄創建一個文件 <code>_config.butterfly.yml</code>，並把主題目錄的 <code>_config.yml</code>內容複製到 <code>_config.butterfly.yml</code> 去。( 注意: 複製的是主題的 <code>_config.yml</code>，而不是 hexo 的<code>_config.yml</code>)</p>
+<p>部署的时候会优先使用<code>_config.butterfly.yml</code>里面的配置，这样更新的时候配置就不会丢失了</p>
+<p><em>可以在hexo根目录的<code>Source</code> 下新建一个文件夹保存图片等资源。可以在<code>_config.butterfly.yml</code>中直接调用。放在主题文件夹内的所有文件都会在更新后丢失</em></p>
+<p>剩余的配置步骤请跟随<a href="https://butterfly.js.org/posts/dc584b87/">官方文档</a>进行</p>
+<h1 id="GitHub-Action-自动部署"><a href="#GitHub-Action-自动部署" class="headerlink" title="GitHub Action 自动部署"></a>GitHub Action 自动部署</h1><h2 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h2><ol>
+<li>生成ssh部署密钥，可以使用现有的密钥，也可以重新生成一个专有密钥</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>然后进入保存hexo源码的私有仓库，在<code>Settings -&gt; Secrets -&gt; Add a new secret</code> 页面上添加ssh私钥</li>
+</ol>
+<ul>
+<li>在 <code>Name</code> 输入框填写 <code>HEXO_DEPLOY</code></li>
+<li>在 <code>Value</code> 输入框填写私钥（默认在&#x2F;.ssh&#x2F;id_rsa文件中）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/Qexo/2023/7/image_25406c5c153cfc2a2d90e15eacfb69b3.png" alt="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/Qexo/2023/7/image_25406c5c153cfc2a2d90e15eacfb69b3.png"></p>
+<ol start="3">
+<li>进入<code>github.io</code>的共有仓库，在  <code>Settings -&gt; Secrets -&gt; Add a new secret</code> 页面上添加ssh公钥</li>
+</ol>
+<ul>
+<li>在 <code>Title</code> 输入框填写 <code>HEXO_DEPLOY</code></li>
+<li>在 <code>Key</code> 输入框填写公钥（默认在&#x2F;.ssh&#x2F;id_rsa.pub文件中）</li>
+<li>勾选 <code>Allow write access</code> 选项</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/Qexo/2023/7/image_cac8eaccc00bb2e36bcd9670663acaac.png" alt="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/Qexo/2023/7/image_cac8eaccc00bb2e36bcd9670663acaac.png"></p>
+<h2 id="生成GitHub-Token"><a href="#生成GitHub-Token" class="headerlink" title="生成GitHub Token"></a>生成GitHub Token</h2><p><a href="https://github.com/settings/tokens">点此处</a>来新建一个token，选择经典Token，然后勾选repo，然后点击生成即可看到token（一定要及时保存，因为token只会显示一次，若没有保存只能重新申请）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/06/17/1582ac61cf6bf2dfeabebf582c5c014d.png" alt="image-20230521214205257"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/05/21/af29264919e17f132a99776bbebee047.png" alt="创建token"></p>
+<h2 id="项目文件设置"><a href="#项目文件设置" class="headerlink" title="项目文件设置"></a>项目文件设置</h2><ol>
+<li>在 hexo私有仓库根目录下创建 <code>.github/workflows/deploy.yml</code> 文件，并修改git的<code>user.email</code>和<code>user.name</code>（大约在33行）</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Hexo</span> <span class="string">Deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-22.04</span></span><br><span class="line">    <span class="attr">if:</span> <span class="string">github.event.repository.owner.id</span> <span class="string">==</span> <span class="string">github.event.sender.id</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">source</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">ref:</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;18&#x27;</span></span><br><span class="line">  </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Hexo</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">ACTION_DEPLOY_KEY:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.HEXO_DEPLOY</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          mkdir -p ~/.ssh/</span></span><br><span class="line"><span class="string">          echo &quot;$ACTION_DEPLOY_KEY&quot; &gt; ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          chmod 700 ~/.ssh</span></span><br><span class="line"><span class="string">          chmod 600 ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span></span><br><span class="line"><span class="string">          git config --global user.email &quot;email&quot;</span></span><br><span class="line"><span class="string">          git config --global user.name &quot;username&quot;</span></span><br><span class="line"><span class="string">          git submodule update --init --recursive</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g</span></span><br><span class="line"><span class="string">          npm install</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo clean</span></span><br><span class="line"><span class="string">          hexo g</span></span><br><span class="line"><span class="string">          hexo deploy</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我在部署的时候遇到了一个BUG：hexo并不会自动引用<code>_config.butterfly.yml</code>的配置。所以需要将配置复制进主题中才能正常部署</p>
+<p>在<code>npm install</code>后面添加两句指令<code>rm themes/hexo-theme-butterfly/_config.yml</code>和<code>cp _config.butterfly.yml themes/hexo-theme-butterfly/_config.yml</code>就可以正常部署了</p>
+</blockquote>
+<ol start="3">
+<li>修改根目录的<code>_config.yml</code>文件</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:用户名/用户名.github.io.git</span><br><span class="line">  branch: main</span><br><span class="line">  token: 你的token</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在 <code>git bash</code>中输入指令提交修改。git指令可以参考<a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰的Git教程</a></li>
+</ol>
+<p>上传后应该就会自动部署环境并生成静态网页然后上传到<code>github.io</code>的仓库中</p>
+<h1 id="修改域名与开启HTTPS"><a href="#修改域名与开启HTTPS" class="headerlink" title="修改域名与开启HTTPS"></a>修改域名与开启HTTPS</h1><p>虽然现在已经可以访问网站但是域名却是Github的，有域名的还是建议通过自己的域名访问，这样及时以后迁移网站也方便很多。</p>
+<ol>
+<li>打开你的DNS管理页面，在域名创建A记录到如下几个IP</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">185.199.108.153</span><br><span class="line">185.199.109.153</span><br><span class="line">185.199.110.153</span><br><span class="line">185.199.111.153</span><br></pre></td></tr></table></figure>
+
+<p><em>若想开启ipv6访问也可以创建AAAA记录，官方文档建议至少创建一个A记录，因为 IPv6 的全局采用速度缓慢。</em></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2606:50c0:8000::153</span><br><span class="line">2606:50c0:8001::153</span><br><span class="line">2606:50c0:8002::153</span><br><span class="line">2606:50c0:8003::153</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>IP来源于GitHub</strong><a href="https://docs.github.com/zh/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">官方文档</a></p>
+</blockquote>
+<ol start="2">
+<li>然后在www子域创建CNAME规则指向<code>你的用户名.github.io</code></li>
+</ol>
+<blockquote>
+<p>如果配置顶点域名（如example.com），则一定要配置www子域。</p>
+</blockquote>
+<ol start="3">
+<li>打开配置Hexo的公开储存库，点击<code>setting</code>然后选择<code>Pages</code>。然后在<code>Custom domain</code>中填入你的域名，等待DNS验证通过后就可以了。等待几分钟后就可以开启强制HTTPS了。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/05/21/ea55d3a98d54fbccf2e65aa680a45cda.png" alt="配置域名"></p>
+<ol start="3">
+<li>在&#x2F;source目录下添加文件命令为<code>CNAME</code>,在里面添加你绑定的域名，否则，使用<code>hexo d</code> 上传的时候会删除github的cname设置</li>
+</ol>
+<h1 id="在线编写-amp-发布文章"><a href="#在线编写-amp-发布文章" class="headerlink" title="在线编写&amp;发布文章"></a>在线编写&amp;发布文章</h1><p><strong>点击下方标题进入官方文档查看如何配置</strong></p>
+<h2 id="Wexagonal"><a href="#Wexagonal" class="headerlink" title="Wexagonal"></a><a href="https://github.com/Wexagonal/Wexagonal">Wexagonal</a></h2><p>一个Hexo后端，可以通过cloudflare worker部署也可以在服务器和Vercel上部署</p>
+<p><em>目前该项目已经一年没有更新，且官方文档内容不全</em></p>
+<h2 id="ESHexoN"><a href="#ESHexoN" class="headerlink" title="ESHexoN"></a><a href="https://eshexon-docs.netlify.app/">ESHexoN</a></h2><p>一款简洁、强大的 Hexo 在线编辑器。后端部署支持 Deno 与 Cloudflare Workers 两个平台</p>
+<p>ESHexoN 官方使用 Vue + Vuetify 构建了一个公共前端。公共前端只需要填写用户名，密码和后端地址即可直接使用</p>
+<h2 id="Qexo"><a href="#Qexo" class="headerlink" title="Qexo"></a><a href="https://www.oplog.cn/qexo/">Qexo</a></h2><p>不仅是Hexo在线编辑器，同时集成了图床，友链管理和说说等其他高级功能</p>
+<p>可以通过Vercel或者本地部署</p>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>博客</tag>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+  </entry>
+  <entry>
+    <title>传送门</title>
+    <url>/link/index.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+  </entry>
+  <entry>
+    <title>喜欢的音乐</title>
+    <url>/music/index.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+  </entry>
+  <entry>
+    <title>标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+  </entry>
+</search>

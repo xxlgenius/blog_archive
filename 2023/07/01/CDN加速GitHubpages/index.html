@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>又拍云CDN加速访问Github Page | 筱添柴的小栈</title><meta name="author" content="筱添柴"><meta name="copyright" content="筱添柴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用又拍云CDN优化国内访问速度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="又拍云CDN加速访问Github Page">
+<meta property="og:url" content="https://www.xxlgenius.com/2023/07/01/CDN%E5%8A%A0%E9%80%9FGitHubpages/index.html">
+<meta property="og:site_name" content="筱添柴的小栈">
+<meta property="og:description" content="使用又拍云CDN优化国内访问速度">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/dcd5b6846059a0f0d74f1d730675f9c2.png">
+<meta property="article:published_time" content="2023-07-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-01T16:00:00.000Z">
+<meta property="article:author" content="筱添柴">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="CDN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/dcd5b6846059a0f0d74f1d730675f9c2.png"><link rel="shortcut icon" href="/asset/favicon.ico"><link rel="canonical" href="https://www.xxlgenius.com/2023/07/01/CDN%E5%8A%A0%E9%80%9FGitHubpages/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-9CFH4X3P5G"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9CFH4X3P5G');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":6,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: 筱添柴","link":"链接: ","source":"来源: 筱添柴的小栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '又拍云CDN加速访问Github Page',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-02 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="筱添柴的小栈" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/asset/avatar_transparent.png" onerror="onerror=null;src='/asset/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 传送门</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/dcd5b6846059a0f0d74f1d730675f9c2.png')"><nav id="nav"><span id="blog-info"><a href="/" title="筱添柴的小栈"><img class="site-icon" src="/asset/avatar_transparent.png"/><span class="site-name">筱添柴的小栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 传送门</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">又拍云CDN加速访问Github Page</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-01T16:00:00.000Z" title="发表于 2023-07-02 00:00:00">2023-07-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-01T16:00:00.000Z" title="更新于 2023-07-02 00:00:00">2023-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="又拍云CDN加速访问Github Page"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前一直挂科学上网访问GitHub，所以对于GitHub的访问速度没有什么感觉。直到前段时间直连访问了一次博客，只能说和被墙也没什么两样。所以CDN对于Github Page来说就是必需品了。</p>
+<h1 id="为什么是又拍云"><a href="#为什么是又拍云" class="headerlink" title="为什么是又拍云"></a>为什么是<a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">又拍云</a></h1><p>又拍云的代金券并不是按月发放，而且按年。即这个月没用完的额度依然可以在今年内使用，这样的话即使有个别几个月超出免费额度也不会有问题。所以又拍云的免费额度反而是最实在的。</p>
+<p>当你的网站人开始多起来以后，免费的CDN流量不够的时候。可以申请<code>推广大使</code>，每年有1000元的抵用券。非常适合中小型网站。</p>
+<p>而且又拍云也支持对象存储，可以搭建图床</p>
+<p>缺点：需要在加速页面的页脚添加推广链接。</p>
+<h1 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h1><h2 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件"></a>必要条件</h2><ul>
+<li>域名已备案</li>
+<li>一个支持线路解析的DNS（推荐华为云，无需实名制，免费版也可以设置1秒TTL）</li>
+<li>一个已经实名认证的又拍云账号</li>
+</ul>
+<h2 id="申请又拍云联盟"><a href="#申请又拍云联盟" class="headerlink" title="申请又拍云联盟"></a>申请又拍云联盟</h2><p>申请免费额度需要在页面添加推广链接</p>
+<h3 id="在matery主题上添加又拍云链接"><a href="#在matery主题上添加又拍云链接" class="headerlink" title="在matery主题上添加又拍云链接"></a>在matery主题上添加又拍云链接</h3><ol>
+<li><p>将又拍云的logo上传到你自己的图床上，<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/8fa59409ece2a4491180ed1dad9f459b.png">下载链接</a></p>
+</li>
+<li><p>在<code>_config.yml</code>文件中添加如下配置</p>
+</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">upyun:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">logourl:</span> <span class="comment">#又拍云logo链接</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral</span> <span class="comment">#推广链接</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在<code>/layout/_partial/footer.ejs</code>文件的大约第107行添加如下代码</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.<span class="property">upyun</span>.<span class="property">enable</span>) &#123; %&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;upyun&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- url_for(theme.upyun.url) %&gt;&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        由</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&lt;%- theme.jsDelivr.url %&gt;&lt;%- url_for(theme.upyun.logourl) %&gt;&quot;</span>    </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&quot;height: 50px; vertical-align:middle&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml">        提供CDN支持 </span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>添加后如图<br><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/561f032759a26b6335221ff5a59c17ed.png"></p>
+<h3 id="申请抵用券"><a href="#申请抵用券" class="headerlink" title="申请抵用券"></a>申请抵用券</h3><p>打开<a target="_blank" rel="noopener" href="https://www.upyun.com/league">又拍云联盟</a>并登录</p>
+<p>然后点击<strong>立即申请</strong>并填入相关信息，如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/21af6596c2a4be32a98d675ffcfa835e.png"></p>
+<p>之后需要审核1-2天，耐心等待即可。</p>
+<h3 id="添加SSL证书"><a href="#添加SSL证书" class="headerlink" title="添加SSL证书"></a>添加SSL证书</h3><p>在等待审核的时间里，可以申请一下SSL证书</p>
+<p>打开<a target="_blank" rel="noopener" href="https://console.upyun.com/toolbox/ssl/">又拍云SSL证书</a></p>
+<p>点击<strong>申购证书</strong>就可以申请免费的单域名证书，<strong>证书管理</strong>中可以上传自有证书</p>
+<p>又拍云支持自动续签 Let’s Encrypt 证书还是挺方便的</p>
+<h2 id="CDN设置"><a href="#CDN设置" class="headerlink" title="CDN设置"></a>CDN设置</h2><ol>
+<li>登录又拍云，进入<a target="_blank" rel="noopener" href="https://console.upyun.com/dashboard/">控制台</a>，创建CDN服务</li>
+</ol>
+<p>​		配置如图所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/03de957788d21eeded449642b3ee6f2d.png"></p>
+<p>​		点击创建后会生成专属CNAME</p>
+<ol start="2">
+<li>打开DNS管理界面将域名的国内线路解析设置为CNAME</li>
+</ol>
+<p>​		国际线路解析设置参考我的文章：<a target="_blank" rel="noopener" href="https://xxlgenius.com/2023/05/21/%E6%90%AD%E5%BB%BAHexo%E5%92%8CGithubPage%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">搭建Hexo和GithubPage的个人博客</a></p>
+<ol start="3">
+<li>打开强制HTTPS，如图</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/bdf6423eb39d2d063dd3515a1222b3bb.png"></p>
+<ol start="5">
+<li><p>剩余的配置可以参考介绍，视情况开启，一般都是用来优化性能和流量的，不开也不影响使用。</p>
+</li>
+<li><p>设置好以后需要等一会访问，等CDN缓存完资源。也可以在控制台手动强制刷新，如图</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/09/413226d3077620e7329232b7a8bd12f2.png"></p>
+<h1 id="其他免费CDN的常见服务商"><a href="#其他免费CDN的常见服务商" class="headerlink" title="其他免费CDN的常见服务商"></a>其他免费CDN的常见服务商</h1><h2 id="比较推荐"><a href="#比较推荐" class="headerlink" title="比较推荐"></a>比较推荐</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.freecdn.pw/">FreeCDN</a><br>免费套餐只能绑定一个域名，但是有20G的ddos防御</li>
+<li><a target="_blank" rel="noopener" href="https://www.dogecloud.com/price?product=cdn">多吉云</a><br>每月20G的免费流量，可以尝试</li>
+<li><a target="_blank" rel="noopener" href="https://www.yundun.com/">上海云盾</a><br>不限流量，但是带宽限制5M<br>可以设置主站和备用站，主站离线可以自动切换到备用站</li>
+</ul>
+<h2 id="不推荐"><a href="#不推荐" class="headerlink" title="不推荐"></a>不推荐</h2><p><a target="_blank" rel="noopener" href="https://www.cloudflare.com/">Cloudflare</a><br>没有国内的节点，在一些地区甚至是减速器</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.qiniu.com/">七牛云</a><br>只有HTTP流量是免费的</li>
+<li><a target="_blank" rel="noopener" href="https://defense.yunaq.com/jsl/">加速乐</a><br>HTTPS不免费</li>
+<li><del>百度云加速</del><br>2023年5月5日起百度云加速不支持创建免费域名。地主家也没余粮了.jpg</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>虽然介绍又拍云的时候写的像软文，但是确实很符合我的需求。大家可以根据自己的需求来选择其他家的CDN服务。适合自己的才是最好的。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://www.xxlgenius.com">筱添柴</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.xxlgenius.com/2023/07/01/CDN%E5%8A%A0%E9%80%9FGitHubpages/">https://www.xxlgenius.com/2023/07/01/CDN%E5%8A%A0%E9%80%9FGitHubpages/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.xxlgenius.com" target="_blank">筱添柴的小栈</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Github/">Github</a><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/CDN/">CDN</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/dcd5b6846059a0f0d74f1d730675f9c2.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/06/02/AIDA64%E6%80%A7%E8%83%BD%E7%9B%91%E8%A7%86%E5%99%A8/" title="AIDA64性能监视器"><img class="cover" src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/06/08/79161f8143ad4f5fb085c3a5ba473b5f.png" onerror="onerror=null;src='/asset/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">AIDA64性能监视器</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/asset/avatar_transparent.png" onerror="this.onerror=null;this.src='/asset/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">筱添柴</div><div class="author-info__description">喜欢有趣的灵魂</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxlgenius"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxlgenius" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://space.bilibili.com/1999756" target="_blank" title="BiliBili"><i class="fab fa-bilibili" style="color: #0299d1;"></i></a><a class="social-icon" href="https://steamcommunity.com/id/xxlgenius" target="_blank" title="Steam"><i class="fab fa-steam" style="color: #07193e;"></i></a><a class="social-icon" href="mailto:hszhangown@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://www.xxlgenius.com/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #ff9352;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%88%E6%8B%8D%E4%BA%91"><span class="toc-number">2.</span> <span class="toc-text">为什么是又拍云</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">搭建过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">必要条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E5%8F%88%E6%8B%8D%E4%BA%91%E8%81%94%E7%9B%9F"><span class="toc-number">3.2.</span> <span class="toc-text">申请又拍云联盟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8matery%E4%B8%BB%E9%A2%98%E4%B8%8A%E6%B7%BB%E5%8A%A0%E5%8F%88%E6%8B%8D%E4%BA%91%E9%93%BE%E6%8E%A5"><span class="toc-number">3.2.1.</span> <span class="toc-text">在matery主题上添加又拍云链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E6%8A%B5%E7%94%A8%E5%88%B8"><span class="toc-number">3.2.2.</span> <span class="toc-text">申请抵用券</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0SSL%E8%AF%81%E4%B9%A6"><span class="toc-number">3.2.3.</span> <span class="toc-text">添加SSL证书</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CDN%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.3.</span> <span class="toc-text">CDN设置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%85%8D%E8%B4%B9CDN%E7%9A%84%E5%B8%B8%E8%A7%81%E6%9C%8D%E5%8A%A1%E5%95%86"><span class="toc-number">4.</span> <span class="toc-text">其他免费CDN的常见服务商</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E6%8E%A8%E8%8D%90"><span class="toc-number">4.1.</span> <span class="toc-text">比较推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90"><span class="toc-number">4.2.</span> <span class="toc-text">不推荐</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><div><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/asset/icp.png"><span>苏ICP备2023020900号</span></a></div><div><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank">由<img src="https://cdn.jsdelivr.net/gh/xxlgenius/blog_img/2023/07/04/8fa59409ece2a4491180ed1dad9f459b.png" style="height:50px; vertical-align:middle"/>提供CDN支持</a></div><div>唔... 已经到底了捏 `(*>﹏<*)′</div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-lyart-eight.vercel.app/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-lyart-eight.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
